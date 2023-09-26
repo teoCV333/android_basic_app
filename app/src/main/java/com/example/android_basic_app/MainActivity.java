@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
-                alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "IT'S TIME TO DEVELOP!!");
-                alarm.putExtra(AlarmClock.EXTRA_HOUR, 10);
-                alarm.putExtra(AlarmClock.EXTRA_MINUTES, 10);
-                if(alarm.resolveActivity(getPackageManager()) != null) {
-                    startActivity(alarm);
+                Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                        .putExtra(AlarmClock.EXTRA_MESSAGE, "it´s time to develop!!")
+                        .putExtra(AlarmClock.EXTRA_HOUR, 10)
+                        .putExtra(AlarmClock.EXTRA_MINUTES, 10);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
                 }
             }
         });
@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Intent call = new Intent(Tele);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + 324388891));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 

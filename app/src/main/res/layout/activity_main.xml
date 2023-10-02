@@ -31,15 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Go to google"
-            tools:textSize="20dp" />
+            android:text="Google"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/btnAlarm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Add Alarm"
+            android:text="Alarm"
             android:textSize="20dp" />
 
         <Button

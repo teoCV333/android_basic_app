@@ -18,9 +18,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    Button btnGoogle, btnAlarm, btnCall, btnCamera;
+    Button btnGoogle, btnAlarm, btnCall, btnCamera, btnMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btnAlarm = findViewById(R.id.btnAlarm);
         btnCall = findViewById(R.id.btnCall);
         btnCamera = findViewById(R.id.btnCamera);
+        btnMap = findViewById(R.id.btnMap);
 
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +70,29 @@ public class MainActivity extends AppCompatActivity {
                     camLauncher.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
                 } catch (Error error) {
                     Log.d(error.toString(), "error camera: ");
+                }
+            }
+        });
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double latitude = 6.2757146;
+                double longitude = -75.5864619;
+
+                String label = "DEV MOBILE APPS CLASS ROOM";
+                String uriBegin = "geo:" + latitude + "," + longitude;
+                String query = latitude + "," + longitude + "(" + label + ")";
+                String encodedQuery = Uri.encode(query);
+                String uriString = uriBegin + "?q=" + encodedQuery;
+                Uri uri = Uri.parse(uriString);
+
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setPackage("com.google.android.apps.maps");
+                        startActivity(intent);
+                } catch (Error error) {
+                    Log.d(error.toString(), "error gps: ");
                 }
             }
         });
